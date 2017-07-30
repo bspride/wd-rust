@@ -19,7 +19,7 @@ fn main() {
         .subcommand(
             SubCommand::with_name("add")
                 .about("Adds the current working directory to warp points")
-                .arg(Arg::with_name("point").required(true)),
+                .arg(Arg::with_name("name").required(true)),
         )
         .get_matches();
 
