@@ -20,10 +20,17 @@ fn main() {
         )
         .get_matches();
 
-    let point = matches.value_of("point").unwrap_or("");
-    println!("{}", &point);
-
-    if let Some(matches) = matches.subcommand_matches("add") {
-        println!("Made it mom!");
+    if matches.is_present("point") {
+        let point = matches.value_of("point").unwrap();
+        println!("{}", &point);
+    } else {
+        match matches.subcommand() {
+            ("add", Some(matches)) => {
+                println!("Add was used!");
+            }
+            _ => {
+                println!("{}", matches.usage());
+            }
+        }
     }
 }
