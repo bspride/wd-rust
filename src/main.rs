@@ -3,7 +3,7 @@ extern crate clap;
 mod cli;
 
 use clap::{App, Arg, SubCommand, AppSettings};
-use cli::add;
+use cli::{add, warp};
 
 fn main() {
     let matches = App::new("wd")
@@ -24,8 +24,7 @@ fn main() {
         .get_matches();
 
     if matches.is_present("point") {
-        let point = matches.value_of("point").unwrap();
-        println!("{}", &point);
+        warp::run(&matches);
     } else {
         match matches.subcommand() {
             ("add", Some(matches)) => add::run(matches),
