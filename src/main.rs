@@ -1,6 +1,9 @@
 extern crate clap;
 
+mod cli;
+
 use clap::{App, Arg, SubCommand, AppSettings};
+use cli::add;
 
 fn main() {
     let matches = App::new("wd")
@@ -25,9 +28,7 @@ fn main() {
         println!("{}", &point);
     } else {
         match matches.subcommand() {
-            ("add", Some(matches)) => {
-                println!("Add was used!");
-            }
+            ("add", Some(matches)) => add::run(matches),
             _ => {
                 println!("{}", matches.usage());
             }
